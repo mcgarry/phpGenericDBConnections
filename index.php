@@ -1,17 +1,19 @@
 <?php
 	// include connection function getData()
-	//include 'conn.php';
+	include 'conn.php';
 	
 	// PDO SQL
-	//$sql = "SELECT * FROM `???_tbl`";
+	// you need to put your SQL in a PDO format in here
+	$sql = "";
 	
 	// PDO Params
-	//$params = array();
+	// you need to include PDO variables in the array
+	$params = array();
 	
 	// Put results into $data
-	//$data = getData($sql,$params);
+	$data = getData($sql,$params);
 	
-	// uncomment to see results
+	// uncomment below lines to see results
 	//var_dump($data);
 	//echo ""---------------------------;
 	//var_dump($data[0]);
