@@ -2,7 +2,7 @@
 $connStr = 'odbc:Driver={Microsoft Access Driver (*.mdb, *.accdb)};' . 
 			'Dbq=C:\\xampp\\htdocs\\20180942\\rugby.mdb;';
 
-	// ------------------ dont touch  below -----------------
+	// ------------------ dont touch  below -----------------//
 function data($dataSQL,$params,$isShowEcho,$isReturned){
 	global $connStr;
 	try {
@@ -26,7 +26,9 @@ function data($dataSQL,$params,$isShowEcho,$isReturned){
 		}
     }
 }
-
+// $dataSQL - PDO SQL
+// $params - PDO Params
+// isShowEcho - true / false 
 function setData($dataSQL,$params,$isShowEcho){
 	data($dataSQL,$params,$isShowEcho,false);
 }
