@@ -33,7 +33,7 @@ function connData($dataSQL,$params,$isShowEcho,$isReturned){
 
 
 function getData($dataSQL,$params,$isShowEcho){
-	return = connData($dataSQL,$params,$isShowEcho,true);
+	return connData($dataSQL,$params,$isShowEcho,true);
 }
 
 function setData($dataSQL,$params,$isShowEcho){
