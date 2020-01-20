@@ -11,7 +11,8 @@
 	$params = array();
 	
 	// Put results into $data
-	$data = getData($sql,$params);
+	// turn on/off error messages with true/false as third value passed
+	$data = getData($sql,$params,true);
 	
 	// uncomment below lines to see results
 	//var_dump($data);
