@@ -7,20 +7,21 @@
 
 <?php
 // Location to file
-$db = 'C:\XAMPP\htdocs\csc-odbc\RugbyClub.accdb';
+$db = 'C:\XAMPP\htdocs\cscb-json\odbc-data\bookshop.accdb';
 
+$dataRtn;
 
 function setData($dataSQL,$params,$isShowEcho){
-	data($dataSQL,$params,$isShowEcho,false);
+	data($dataSQL,$params,$isShowEcho);
 	exit;	
 }
 function getData($dataSQL,$params,$isShowEcho){
-	data($dataSQL,$params,$isShowEcho,true);
+	return data($dataSQL,$params,$isShowEcho);
 	exit;
 }
 
 // Connection to ms access
-function data($sql,$params,$isShowEcho,$isReturned)
+function data($sql,$params,$isShowEcho)
 {
 	global $db;
 	$db_param["name"]=$db;
@@ -32,20 +33,27 @@ function data($sql,$params,$isShowEcho,$isReturned)
 	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	if ($isShowEcho) {
 		if ($db){
-			"<br>PDO connection success\n";
+			echo "<br>PDO connection success\n";
 		}else{ 
-			"<br>pdo connection failed\n";
+			echo "<br>pdo connection failed\n";
 		}
 	}
 	try
 	{
 		$result = $db->query($sql);
 		$row = $result->fetchAll(PDO::FETCH_ASSOC);
-		if ($isShowEcho) print_r($row);
+		if ($isShowEcho) {
+			echo "track-> result->fetchAll(PDO::FETCH_ASSOC);";
+			print_r($row);
+		};
+		return $row;
 	}
 	catch(PDOExepction $e)
 	{
-		if ($isShowEcho) echo $e->getMessage();
+		if ($isShowEcho) {
+			echo "track-> PDOExepction e";
+			echo $e->getMessage();
+		}
 	}
 	
 	try
@@ -72,16 +80,18 @@ function data($sql,$params,$isShowEcho,$isReturned)
 			$data["error_mesg"]="access connection error ". $e->getMessage() ;
 			$data["legends"]=array("Error");
 			$data["data"]=array(0);
+			echo "track -> print_r(e,true);";
 			return $data;
 		}
 		// ---------------- My version ---------------- //
+		/*
 		try{
-			//$sql = $dataSQL;
 			$sql = 'select * from "Players"';
 			$sth = $db->prepare($sql);
 			$sth->execute($params);
 			if ($isReturned){
 				return $sth->fetchAll(PDO::FETCH_ASSOC);
+				echo "trigger";
 			}
 			$dbh = null; 
 			if ($isShowEcho){ 
@@ -94,6 +104,7 @@ function data($sql,$params,$isShowEcho,$isReturned)
 				echo "Connection failed: " . $e->getMessage();
 			}
 		}
+		*/
 	}
     catch (exception $e)
     {
